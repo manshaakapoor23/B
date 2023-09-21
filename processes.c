@@ -14,7 +14,7 @@ int main(){
     clock_gettime(CLOCK_MONOTONIC, &start1);
     pid1 = fork();
     if (pid1 == 0){
-        execl("./counting_program", "./counting_program", "SCHED_RR", NULL);
+        execl("./counting_program", "./counting_program", "SCHED_FIFO", NULL);
         perror("execl");
         exit(EXIT_FAILURE);
     }
@@ -26,7 +26,7 @@ int main(){
     clock_gettime(CLOCK_MONOTONIC, &start2);
     pid2 = fork();
     if (pid2 == 0){
-        execl("./counting_program", "./counting_program", "SCHED_FIFO", NULL);
+        execl("./counting_program", "./counting_program", "SCHED_OTHER", NULL);
         perror("execl");
         exit(EXIT_FAILURE);
     }
@@ -38,7 +38,7 @@ int main(){
     clock_gettime(CLOCK_MONOTONIC, &start3);
     pid3 = fork();
     if (pid3 == 0){
-        execl("./counting_program", "./counting_program", "SCHED_OTHER", NULL);
+        execl("./counting_program", "./counting_program", "SCHED_RR", NULL);
         perror("execl");
         exit(EXIT_FAILURE);
     }
